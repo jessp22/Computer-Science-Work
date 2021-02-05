@@ -1,45 +1,41 @@
-package stockClass;
-
-// Modified 9.2 (The Stock class) Following the example
-// of the Circle class in Section 9.2,
-// design a class named Stock that contains:
-// A string data field named symbol for the stock’s symbol.;
-// A string data field named name for the stock’s name.;
-// A double data field named previousClosingPrice
-// that stores the stock price for the previous day.;
-// A double data field named currentPrice that stores
-// the stock price for the current time.;
-// A constructor that creates a stock with the
-// specified symbol and name; A method named getChangePercent()
-// that returns the percentage changed from previousClosingPrice
-// to currentPrice. Make a UML diagram for the class in the comments
-// in the top of the class, and then implement the class.
-// Write a test program that creates a Stock object
-// with the stock symbol ORCL, the name Oracle Corporation,
-// and the previous closing price of 34.5.
-// Set a new current price to 34.35 and display the price-change percentage.
+package bubbleSort;
 
 public class Main {
 
     public static void main(String[] args) {
+	// **7.18 (Bubble sort) Write a sort method that uses the bubble-sort algorithm.
+        // The bubblesort algorithm makes several passes through the array.
+        // On each pass, successive neighboring pairs are compared.
+        // If a pair is not in order, its values are swapped;
+        // otherwise, the values remain unchanged.
+        // The technique is called a bubble sort or sinking sort
+        // because the smaller values gradually “bubble” their way
+        // to the top and the larger values “sink” to the bottom.
+        // Write a test program that reads in ten double numbers,
+        // invokes the method, and displays the sorted numbers.
 
-        Stock ourStock = new Stock();
-        Stock software = new Stock("ORCL", "Oracle Corporation");
+        System.out.println("Sorted list: ");
 
-        software.setPreviousClosingCost(34.5);
+        int[] list = {47, 34, 43, 29, 89, 65, 73, 19, 90, 45};
+        bubbleSort(list);
+        for (int sortedList = 0; sortedList < list.length; sortedList++)
+            System.out.println(list[sortedList] + " ");
+    }
 
-        software.printSymbol();
-        software.printName();
-        software.printPreviousClosingCost();
+    private static void bubbleSort(int[] list) {
+        boolean needNextPass = true;
 
-        software.setCurrentCost(34.35);
-        software.printCurrentCost();
+        for (int newSortedList = 1; newSortedList < list.length && needNextPass; newSortedList++) {
+            needNextPass = false;
+            for (int sortedList = 0; sortedList < list.length - newSortedList; sortedList++) {
+                if (list[sortedList] > list[sortedList +1]) {
+                    int temp = list [sortedList];
+                    list[sortedList] = list[sortedList + 1];
+                    list[sortedList +1] = temp;
 
-        software.displayCostChangePercentage();
-
-
-
-
-
+                    needNextPass = true;
+                }
+            }
+        }
     }
 }
